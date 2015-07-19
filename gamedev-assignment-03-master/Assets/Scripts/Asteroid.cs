@@ -78,26 +78,36 @@ public class Asteroid : MonoBehaviour
 //
 //	}
 
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		Debug.Log ("Ive been HIT!");
-		//Destroy (GetComponent<Collider2D> ().gameObject);
-		//Destroy (gameObject);
-
-		if (Health == 1) {
-			Destroy (GetComponent<Collider2D> ().gameObject);
-			Destroy (gameObject);
-		}
-		Health --; 
+//	void OnTriggerEnter2D(Collider2D collider)
+//	{
+//		Debug.Log ("Ive been HIT!");
+//		//Destroy (GetComponent<Collider2D> ().gameObject);
+//		//Destroy (gameObject);
+//
+//		if (Health == 1) {
+//			Destroy (GetComponent<Collider2D> ().gameObject);
+//			Destroy (gameObject);
+//		}
+//		Health --; 
 //		if (GetComponent<Collider2D> ().gameObject.tag == "ShipBullet") 
 //		{ 
 //			Debug.Log ("Boom"); 
 //		}
-//		
-//		if (gameObject.tag == "ShipBullet") 
-//		{ 
-//			Debug.Log ("Boom"); 
-//		}
-					
+//					
+//	}
+
+	void OnCollisionEnter2D(Collision2D coll)
+	{
+		if (coll.gameObject.tag == "ShipBullet") {
+			Debug.Log ("Boom");
+			Health --; 
+			Destroy (coll.gameObject);
+		}
+		if (Health == 1) {
+			Destroy (gameObject);
+		}
+
+
+		
 	}
 }
